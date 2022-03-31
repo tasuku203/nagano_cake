@@ -1,3 +1,15 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :customers,skip: [:password,], controllers:{
+    registrations: "customers/registrations",
+    sessions: 'customers/sessions'
+  }
+  devise_for :admin,skip: [:registration, :password,], controllers:{
+    sessions: 'admin/sessions'
+  }
+  root to: 'homes#top'
+
+  namespace :admin do
+    resources :genres, only: [:index, :create, :edit, :update]
+    resources :items, only: [:new, :index, :create, :show, :edit, :update]
+  end
 end
