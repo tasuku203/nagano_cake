@@ -8,9 +8,15 @@
 　<h4>商品説明</h4>
 　<%= f.text_area :introduction %>
 　<h4>ジャンル</h4>
-　<%= f.select :genre,{'家具':"家具"},{include_blank:'選択してください'} %>
+　<%= f.select :genre_id ,{},{include_blank:'選択してください'} %>
 　<h4>税抜き価格</h4>
 　<%= f.text_field :price %>円
 　<h4>販売ステータス</h4>
+　<%# ラジオボタンの実装　プロパティ名（is_active）と値(0)をセットで指定 %>
+　<%= f.radio_button :is_active, "0" %>
+　<%= f.label :is_active, "販売中", value: 0 %>
+  <%= f.radio_button :is_active, "1" %>
+  <%= f.label :is_active, "販売停止中", value: 1 %>
+　
 　<%= f.submit "新規登録" %>
 <% end %>
