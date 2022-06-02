@@ -1,13 +1,29 @@
 <h1>商品一覧</h1>
-<% @items.each do |item| %>
-  <p>商品id</p>
-  <%= item.id %>
-  <p>商品名</p>
-  <%= item.name %>
-  <p>税抜き価格</p>
-  <%= item.price %>
-  <p>ジャンル</p>
-  <%= item.genre.name %>
-  <p>ステータス</p>
-  <%= item.is_active %>
-<% end %>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">商品id</th>
+      <th scope="col">商品名</th>
+      <th scope="col">税抜き価格</th>
+      <th scope="col">ジャンル</th>
+      <th >ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <th scope="row"><%= item.id %></th>
+        <td><%= item.name %></td>
+        <td><%= item.price %></td>
+        <td><%= item.genre.name %></td>
+        <td>
+          <% if item.is_active == true %>
+          <p>販売中</p>
+          <% elsif item.is_active == false %>
+          <p>販売停止中</p>
+          <% end %>
+
+          </td>
+      </tr>
+    <% end %>
+  </tbody>
