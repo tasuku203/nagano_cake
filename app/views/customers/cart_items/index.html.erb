@@ -1,0 +1,23 @@
+<h1>ショッピングカート</h1>
+
+<table class="table">
+  <% @cart_item.each do |cart_item|%>
+  <thead>
+    <tr>
+      <th scope="col">商品名</th>
+      <th scope="col">単価(税込み)</th>
+      <th scope="col">数量</th>
+      <th scope="col">小計</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"><%= cart_item.item.name %></th>
+      <td><%= cart_item.item.price %></td>
+      <td><%= cart_item.amount %></td>
+      <td><%= cart_item.item.price %></td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
+

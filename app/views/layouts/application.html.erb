@@ -33,10 +33,10 @@
               <%= link_to "ジャンル一覧", admin_genres_path %>
             </li>
             <li>
-              <%= link_to "ログアウト", destroy_admin_session_path %>
+              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
             </li>
           </ul>
-        <% elsif customer_signed_in %>
+        <% elsif customer_signed_in? %>
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li>
               <%= link_to "マイページ", customers_mypage_path %>
@@ -48,7 +48,7 @@
               <%= link_to "カート", cart_items_path %>
             </li>
             <li>
-              <%= link_to "ログアウト", destroy_customer_session_path %>
+              <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
             </li>
           </ul>
         <% else %>

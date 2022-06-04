@@ -2,3 +2,17 @@
 <%= @item.name %>
 <%= @item.introduction %>
 <%= @item.price %>
+
+<% if @item.is_active == true %>
+  <%= form_with model:@cart_item, url:cart_items_path, method: :post, local: true do |f| %>
+    <%= f.select :amount, [1,2,3,4,5,6,7,8,9,10], {include_blank: "個数選択"} %>
+    <%#　select オブジェクト(今回はformの中野で省略できる)、プロパティ(モデルのカラム名)、要素情報、オプション、要素属性(今回はなし) %>
+    <%= f.hidden_field :item_id, :value =>[@item.id] %>
+     <%#第一引数にオブジェクト名item_id、第二引数部分にvalueで受け渡す値 @item.idを指定
+     #cartitem controllerの cart_items.find_by(item_id:に送ることができる %>
+    <%= f.submit "カートに入れる", class:"btn btn-primary" %>
+  <% end %>
+<% end %>
+
+
+<a class="btn btn-primary" href="cart_items" role="button">カートに入れる</a>
