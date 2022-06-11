@@ -1,0 +1,21 @@
+<h1>注文情報入力</h1>
+
+<p>支払い方法</p>
+<%= form_with model:@order, url:confirm_orders_path, local:true do |f| %>
+    <%= f.radio_button :payment_method, "credit_card" %>
+    <%= f.label :payment_method, "クレジットカード" %>
+
+    <%= f.radio_button :payment_method, "transfer" %>
+    <%= f.label :payment_method, "銀行振り込み" %>
+
+
+<P>お届け先</P>
+    <%#= f.radio_button :adress, "" %>
+    <%= f.label :adress, "ご自身の住所" %>
+    <%= current_customer.address.full_address %>
+    
+    <%= f.select :address_id, options_from_collection_for_select(Adress.all, :id, :full_address) %>
+    
+
+<% end %>
+

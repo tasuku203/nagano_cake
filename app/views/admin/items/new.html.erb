@@ -1,6 +1,6 @@
 <h1>商品新規登録</h1>
 
-<%= form_with model:@item, url: admin_items_path, local:true do |f| %>
+<%= form_with model:@item, url:admin_items_path, local:true do |f| %>
   <h4>商品画像</h4>
 　<%= f.attachment_field :image %>
 　<h4>商品名</h4>
@@ -14,10 +14,10 @@
 　<%= f.text_field :price %>円
 　<h4>販売ステータス</h4>
 　<%# ラジオボタンの実装　プロパティ名（is_active）と値(0)をセットで指定 %>
-　<%= f.radio_button :is_active, "0" %>
-　<%= f.label :is_active, "販売中", value: 0 %>
-  <%= f.radio_button :is_active, "1" %>
-  <%= f.label :is_active, "販売停止中", value: 1 %>
+　<%= f.radio_button :is_active, true %>
+　<%= f.label :is_active, "販売中" %>
+  <%= f.radio_button :is_active, false %>
+  <%= f.label :is_active, "販売停止中" %>
 
 　<%= f.submit "新規登録" %>
 <% end %>
