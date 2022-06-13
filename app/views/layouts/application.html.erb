@@ -39,7 +39,7 @@
         <% elsif customer_signed_in? %>
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li>
-              <%= link_to "マイページ", customers_mypage_path %>
+              <%= link_to "マイページ", customers_mypage_path(current_user.id) %>
             </li>
              <li>
               <%= link_to "商品一覧", items_path %>
