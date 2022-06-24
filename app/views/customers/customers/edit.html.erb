@@ -1,6 +1,6 @@
 <h1>会員情報編集</h1>
 
-<%= form_with model: @customer, url: customers_current_customer_edit_path, local: true do |f| %>
+<%= form_with model: @customer, url: customers_current_customer_path, local: true do |f| %>
 
 <table class="table">
     <tbody>
@@ -40,9 +40,10 @@
       </tr>
       <tr>
         <td></td>
-        <td><%= f.submit "新規登録" %></td>
+        <td><%= f.submit "変更内容を保存" %></td>
+        <td><%= link_to "削除",customers_current_customer_confirm_path(current_customer) %></td>
       </tr>
     </tbody>
   </table>
-  
+
 <% end %>

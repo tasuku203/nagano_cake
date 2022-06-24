@@ -1,1 +1,46 @@
 <h1>注文情報確認</h1>
+<% @order.each do |order| %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">商品名</th>
+      <th scope="col">単価</th>
+      <th scope="col">数量</th>
+      <th scope="col">小計</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"><%= order.order_detils.item.name %></th>
+      <td><%#%></td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+
+  </tbody>
+</table>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">送料</th>
+      <th scope="col"><%= @order.shipping_cost %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">商品合計</th>
+      <td><%= @total %></td>
+    </tr>
+    <tr>
+      <th scope="row">請求金額</th>
+      <td><%= @order.total_payment %></td>
+    </tr>
+  </tbody>
+</table>
+<% end %>
+<h1>支払い方法</h1>
+<%= @order.payment_method %>
+
+<h1>お届け先</h1>
+<%= @order.full_address %>

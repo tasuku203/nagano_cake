@@ -9,3 +9,8 @@ Admin.create!(
       email: 'rails@rails.com',
       password: 'rails_s',
 )
+
+
+#Customer
+  #email: yyyyyy@yyyyy.com
+  #password: 1111111

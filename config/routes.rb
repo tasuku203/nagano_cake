@@ -18,16 +18,16 @@ Rails.application.routes.draw do
 
 
   end
-
+    root to: "customers/homes#top"
   scope module: :customers do
     get '/', to: 'homes#top'
     get '/about', to: 'homes#about'
 
-    get '/customers/mypage', to:'customers#show'
+    get '/customers/my_page', to:'customers#show'
     get '/customers/current_customer/edit', to: 'customers#edit'
     patch '/customers/current_customer', to: 'customers#update'
     get '/customers/current_customer/confirm', to: 'customers#confirm'
-    patch '/customers/current_customer', to: 'customers#destroy'
+    patch '/customers/current_customer/withdrawal', to: 'customers#withdrawal', as:'customers_current_customer_withdrawal'
 
     resources :items, only:[:index, :show]
 
@@ -40,7 +40,7 @@ Rails.application.routes.draw do
     #post '/orders/confirm', to: 'orders#confirm'
    # get '/orders/complete', to: 'orders#complete'
 
-    resources :adress, only:[:index, :edit, :create, :update, :destroy]
+    resources :addresses, only:[:index, :edit, :create, :update, :destroy]
     resources :cart_items, only:[:index, :update, :create] do
       collection do
         delete :destroy_all
