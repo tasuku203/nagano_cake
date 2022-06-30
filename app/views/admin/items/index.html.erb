@@ -13,7 +13,11 @@
     <% @items.each do |item| %>
       <tr>
         <th scope="row"><%= item.id %></th>
-        <td><%= item.name %></td>
+        <td>
+          <%= link_to admin_item_path(item.id) do %>
+           <%= item.name %>
+          <% end %>
+          </td>
         <td><%= item.price %></td>
         <td><%= item.genre.name %></td>
         <td>
@@ -22,7 +26,6 @@
           <% elsif item.is_active == false %>
           <p>販売停止中</p>
           <% end %>
-
           </td>
       </tr>
     <% end %>

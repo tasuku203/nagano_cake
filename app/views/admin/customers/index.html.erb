@@ -1,0 +1,31 @@
+<h1>会員一覧</h1>
+<% @customer.each do |customer| %>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">会員ID</th>
+      <th scope="col">氏名</th>
+      <th scope="col">メールアドレス</th>
+      <th scope="col">ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"><%= customer.id %></th>
+      <td>
+        <%= link_to admin_customer_path(customer.id) do %>
+          <%= customer.full_name %>
+        <% end %>
+      </td>
+      <td><%= customer.email %></td>
+      <td>
+        <% if customer.is_active == true %>
+        <p>有効</p>
+        <% elsif customer.is_active == false %>
+        <p>退会</p>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<% end %>

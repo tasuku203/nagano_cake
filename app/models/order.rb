@@ -5,6 +5,8 @@ class Order < ApplicationRecord
   enum payment_method: { credit_card: 0, transfer: 1 }
 
   def full_address
-    "〒" + postal_code + ' ' + address + ' ' + full_name
+    "〒" + post_code + ' ' + address + ' ' + name
   end
+
+
 end

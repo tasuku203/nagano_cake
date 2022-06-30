@@ -1,5 +1,6 @@
 <h1>注文履歴一覧</h1>
 
+<% @order.each do |order|%>
 <table class="table">
   <thead>
     <tr>
@@ -13,21 +14,13 @@
   </thead>
   <tbody>
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
+      <th scope="row"><%= order.created_at %></th>
+      <td><%= order.address %></td>
+      <td><%#order.%></td>
+      <td><%= order.total_payment %></td>
+      <td><%#order.%></td>
+      <td><%= link_to "表示する", order_path(order.id) %></td>
     </tr>
   </tbody>
 </table>
+<% end %>

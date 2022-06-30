@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     get '/', to: 'homes#top'
     resources :items, only: [:index, :create, :new, :update, :edit, :show]
     resources :genres, only: [:index, :create, :edit, :update]
-    resources :customers, only: [:index, :shoow, :edit, :update]
+    resources :customers, only: [:index, :show, :edit, :update]
     get '/orders/:id', to: 'orders#show'
     patch '/orders/:id', to: 'orders#update'
     patch '/order_details/:id', to: 'order_details#update'

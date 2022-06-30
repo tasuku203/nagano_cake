@@ -20,25 +20,40 @@ class Customers::OrdersController < ApplicationController
     elsif params[:order][:select_address] == "2"
       #formで送られてくるパラメータをそのまま使うだけなので記述はいらない
     end
-  
-   @total = current_customer.cart_item.subtotal
-    @order.shipping_cost = "800"
-    @order.total_payment = @total + @order.shipping_cost
-    
 
-
+     @cart_item = current_customer.cart_items
+     @total = 0
+     @order.shipping_cost = 800
   end
 
   def complete
   end
 
   def create
-    order = Order.new(order_params)
+    cart_items = current_customer.cart_items.all
 
+    order = Order.new(order_params)
+    order.customer_id = current_customer.id
     order.save
+    cart_items.each do |cart_item|
+      order_detail = OrderDetail.new
+      order_detail.item_id = cart_item.item_id
+      order_detail.customer_id = cart_item.customer_id
+      order_detail.price = cart_item.item.price
+      order_detail.quantity = cart_item.amount
+      order_detail.save
+    end
+    redirect_to complete_orders_path
+    cart_items.destroy_all
+
+
+
+
+
   end
 
   def index
+    @order = current_customer.orders.all
   end
 
   def show
@@ -46,6 +61,6 @@ class Customers::OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:payment_method, :post_code, :name, :address)
+    params.require(:order).permit(:payment_method, :post_code, :name, :address, :shipping_cost, :total_payment)
   end
 end
