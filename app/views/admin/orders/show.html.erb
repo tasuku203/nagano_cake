@@ -1,0 +1,25 @@
+<h2>注文履歴詳細</h2>
+<table class="table">
+  <tbody>
+    <tr>
+      <th scope="row">購入者</th>
+      <td><%= @order.name %></td>
+    </tr>
+    <tr>
+      <th scope="row">注文日</th>
+      <td><%= @order.created_at %></td>
+    </tr>
+    <tr>
+      <th scope="row">配送先</th>
+      <td><%= @order.address %></td>
+    </tr>
+    <tr>
+      <th scope="row">支払い方法</th>
+      <td><%= @order.payment_method %></td>
+    </tr><tr>
+      <th scope="row">注文ステータス</th>
+      <td><%= @order.status %></td>
+    </tr>
+  </tbody>
+</table>
+<%= %>
