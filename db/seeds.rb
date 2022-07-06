@@ -14,3 +14,6 @@ Admin.create!(
 #Customer
   #email: yyyyyy@yyyyy.com
   #password: 1111111
+
+  # tanaka@takuya.com
+  # tanakatakuya

@@ -4,3 +4,16 @@ ja:
       payment_method:
         credit_card: 'クレジットカード'
         transfer: '銀行振込'
+
+      status:
+        waiting_for_deposit: '入金待ち'
+        payment_confirmation: '入金確認'
+        maiking: '制作中'
+        ready_to_ship: '発送準備中'
+        sent: '発送済み'
+
+      maiking_status:
+        impossible: '制作不可'
+        waiting: '制作待ち'
+        maiking: '制作中'
+        done: '制作完了'

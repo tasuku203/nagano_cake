@@ -15,14 +15,13 @@ Rails.application.routes.draw do
     get '/orders/:id', to: 'orders#show'
     patch '/orders/:id', to: 'orders#update'
     patch '/order_details/:id', to: 'order_details#update'
-
-
   end
+    
     root to: "customers/homes#top"
+    
   scope module: :customers do
     get '/', to: 'homes#top'
     get '/about', to: 'homes#about'
-
     get '/customers/my_page', to:'customers#show'
     get '/customers/current_customer/edit', to: 'customers#edit'
     patch '/customers/current_customer', to: 'customers#update'

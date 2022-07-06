@@ -2,7 +2,7 @@ class Customers::AddressesController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-    @addresses = Address.all
+    @addresses = current_customer.addresses.all
     @address = Address.new
   end
 
@@ -24,6 +24,9 @@ class Customers::AddressesController < ApplicationController
   end
 
   def destroy
+    address = Address.find(params[:id])
+    address.destroy
+    redirect_to addresses_path
   end
 
   private
