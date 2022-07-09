@@ -1,0 +1,49 @@
+<h1>会員情報編集</h1>
+
+<%= form_with model: @customer, url: customers_current_customer_path, local: true do |f| %>
+
+<table class="table">
+    <tbody>
+      <tr>
+        <td>名前</td>
+        <td>(姓)<%= f.text_field :last_name %></td>
+        <td>(名)<%= f.text_field :first_name %></td>
+      </tr>
+      <tr>
+        <td>フリガナ</td>
+        <td>(セイ)<%= f.text_field :last_name_kana %></td>
+        <td>(メイ)<%= f.text_field :first_name_kana %></td>
+      </tr>
+      <tr>
+        <td>メールアドレス</td>
+        <td><%= f.email_field :email %></td>
+      </tr>
+      <tr>
+        <td>郵便番号(ハイフンなし)</td>
+        <td><%= f.text_field :postal_code %></td>
+      </tr>
+      <tr>
+        <td>住所</td>
+        <td><%= f.text_field :address %></td>
+      </tr>
+      <tr>
+        <td>電話番号(ハイフンなし)</td>
+        <td><%= f.telephone_field :telephone_number %></td>
+      </tr>
+      <tr>
+        <td>パスワード(6文字以上)</td>
+        <td><%= f.password_field :password %></td>
+      </tr>
+      <tr>
+        <td>パスワード(確認用)</td>
+        <td><%= f.password_field :password_confirmation %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= f.submit "変更内容を保存" %></td>
+        <td><%= link_to "削除",customers_current_customer_confirm_path(current_customer) %></td>
+      </tr>
+    </tbody>
+  </table>
+
+<% end %>

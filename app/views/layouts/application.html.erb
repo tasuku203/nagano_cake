@@ -9,12 +9,71 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body
+  <body>
     <header>
-
-
-
-
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Logo</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <% if admin_signed_in? %>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li>
+              <%= link_to "商品一覧", admin_items_path %>
+            </li>
+             <li>
+              <%= link_to "会員一覧", admin_customers_path %>
+            </li>
+            <li>
+              <%= link_to "注文履歴一覧", admin_path %>
+            </li>
+            <li>
+              <%= link_to "ジャンル一覧", admin_genres_path %>
+            </li>
+            <li>
+              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+            </li>
+          </ul>
+        <% elsif customer_signed_in? %>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li>
+              <%= link_to "マイページ", customers_my_page_path(current_customer.id) %>
+            </li>
+             <li>
+              <%= link_to "商品一覧", items_path %>
+            </li>
+            <li>
+              <%= link_to "カート", cart_items_path %>
+            </li>
+            <li>
+              <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+            </li>
+          </ul>
+        <% else %>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li>
+              <%= link_to "About",about_path %>
+            </li>
+             <li>
+              <%= link_to "商品一覧", items_path %>
+            </li>
+            <li>
+              <%= link_to "新規登録", new_customer_registration_path %>
+            </li>
+            <li>
+              <%= link_to "ログイン", new_customer_session_path %>
+            </li>
+          </ul>
+        <% end %>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+    </nav>
     </header>
     <%= yield %>
   </body>
