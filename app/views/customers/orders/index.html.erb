@@ -1,6 +1,5 @@
 <h1>注文履歴一覧</h1>
 
-<% @order.each do |order|%>
 <table class="table">
   <thead>
     <tr>
@@ -12,15 +11,25 @@
       <th scope="col">注文詳細</th>
     </tr>
   </thead>
+  <% @order.each do |order|%>
   <tbody>
     <tr>
-      <th scope="row"><%= order.created_at %></th>
-      <td><%= order.address %></td>
-      <td><%#order.%></td>
-      <td><%= order.total_payment %></td>
-      <td><%#order.%></td>
+      <th scope="row"><%= l order.created_at %></th>
+      <td>
+        <%=  order.post_code %></br>
+        <%= order.address %></br>
+        <%= order.name %>
+      </td>
+      <td>
+        <%#アソシエーションによるeach文%>
+        <% order.order_details.each do |order_detail| %>
+          <%= order_detail.item.name %></br>
+        <% end %>
+      </td>
+      <td><%= order.total_payment %>円</td>
+      <td><%= order.status_i18n %></td>
       <td><%= link_to "表示する", order_path(order.id) %></td>
     </tr>
   </tbody>
+  <% end %>
 </table>
-<% end %>

@@ -1,4 +1,5 @@
 class Admin::ItemsController < ApplicationController
+  before_action :authenticate_admin!
   def new
     @item = Item.new
   end
@@ -9,6 +10,7 @@ class Admin::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    genre = 
     if @item.save
       redirect_to admin_item_path(@item.id)
     else
@@ -35,5 +37,5 @@ class Admin::ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:name, :genre_id, :image, :introduction, :price, :is_active)
   end
-  
+
 end

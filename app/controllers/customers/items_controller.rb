@@ -1,6 +1,8 @@
 class Customers::ItemsController < ApplicationController
+  before_action :authenticate_customer!, only: [:show]
   def index
-    @items = Item.all
+     @items = Item.page(params[:page]).per(8)
+    # @items = Item.paginate(page: params[:page], per_page: 5)
   end
 
   def show

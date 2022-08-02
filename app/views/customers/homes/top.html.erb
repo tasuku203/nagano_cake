@@ -1,8 +1,27 @@
-<p>
- ようこそ、ながのCAKEへ！</br>
- このサイトは、ケーキ販売のECサイトになります。</br>
- 会員でない方も商品の閲覧はできますが、</br>
- 購入には会員登録が必要になります。
-</p>
+<div class="container">
+ <div class="row">
+  ようこそ、ながのCAKEへ！</br>
+  このサイトは、ケーキ販売のECサイトになります。</br>
+  会員でない方も商品の閲覧はできますが、</br>
+  購入には会員登録が必要になります。
+ </div>
+ <div class="row">
+   <h1>新着商品</h1>
+ </div>
+ <div class="row">
+  <% @item.each do |item| %>
+  <div class="col-3">
+   <%= attachment_image_tag item, :image, width: '70%', height: '70%' %></br>
+   <%= link_to item_path(item.id) do %>
+     <%= item.name %></br>
+   <% end %>
+   <%= item.price %>
+  </div>
+  <% end %>
+ </div>
+ <div class="row">
+  <%= link_to "すべての商品を見る", items_path %>
+ </div>
+</div>
 
-<h1>新着商品</h1>
+

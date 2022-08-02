@@ -33,7 +33,7 @@
       <th>会員ステータス</th>
       <td>
         <% if @customer.is_active == true %>
-        <p>有効</p>
+        <p class="text-success">有効</p>
         <% elsif @customer.is_active == false %>
         <p>退会</p>
         <% end %>
@@ -41,5 +41,5 @@
     </tr>
   </tbody>
 </table>
-<%= link_to "編集する",edit_admin_customer_path(@customer.id) %>
-<%= link_to "注文履歴一覧を見る", admin_path %>
+<%= link_to "編集する",edit_admin_customer_path(@customer.id), class:"btn btn-success" %>
+<%= link_to "注文履歴一覧を見る", admin_path, class:"btn btn-primary" %>

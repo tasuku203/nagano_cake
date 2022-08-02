@@ -1,9 +1,22 @@
-<h1>商品一覧</h1>
+<div class="container">
+  <div class="row">
+    <h1>商品一覧</h1>
+  </div>
+  <div class="row">
+    <% @items.each do |item| %>
+    <div class="col-3">
+      <%= attachment_image_tag item,:image, width: '60%', height: '60%' %></br>
+      <%= link_to item_path(item.id) do %>
+       <%= item.name %></br>
+      <% end %>
+      ￥<%= item.price %>
+    </div>
 
-<% @items.each do |item| %>
-  <%= attachment_image_tag item,:image %>
-  <%= link_to item_path(item.id) do %>
-    <%= item.name %>
-  <% end %>
-  <%= item.price %>
-<% end %>
+    <% end %>
+  </div>
+  <div class="row justify-content-center">
+    <%= paginate @items %>
+  </div>
+</div>
+
+

@@ -1,6 +1,4 @@
 <h1>注文履歴一覧</h1>
-
-<% @orders.each do |order| %>
 <table class="table">
   <thead>
     <tr>
@@ -10,14 +8,24 @@
       <th scope="col">注文ステータス</th>
     </tr>
   </thead>
+  <% @orders.each do |order| %>
   <tbody>
     <tr>
       <th scope="row">
-        <%= link_to  %><%= order.created_at %></th>
+        <%= link_to admin_order_path(order.id) do %>
+          <%= l order.created_at %>
+        <% end%>
+      </th>
       <td><%= order.name %></td>
-      <td><%# order.customer.cart_items.amount %></td>
-      <td><%= order.status %></td>
+      <td>
+        <% @quantity = 0 %>
+        <% order.order_details.each do |order_detail| %>
+          <% @quantity += order_detail.quantity %>
+        <% end %>
+        <%= @quantity %>
+      </td>
+      <td><%= order.status_i18n %></td>
     </tr>
   </tbody>
+  <% end %>
 </table>
-<% end %>

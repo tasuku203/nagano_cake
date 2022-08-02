@@ -21,7 +21,7 @@ def customer_state
 end
 
 def after_sign_out_path_for(resource)
-  about_path
+  root_path
   #ほんとはroot_pathにしたいけどエラーが出るので取り合えす
 end
   # GET /resource/sign_in

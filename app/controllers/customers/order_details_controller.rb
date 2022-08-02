@@ -1,7 +1,9 @@
 class Customers::OrderDetailsController < ApplicationController
 
-  def update
-  end
+ 
+  
+  private
+    
 
   # private
   # def order_detail_params

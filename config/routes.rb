@@ -12,13 +12,13 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :create, :new, :update, :edit, :show]
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
-    get '/orders/:id', to: 'orders#show'
+    get '/orders/:id', to: 'orders#show', as:'order'
     patch '/orders/:id', to: 'orders#update'
-    patch '/order_details/:id', to: 'order_details#update'
+    patch '/order_details/:id', to: 'order_details#update', as:'order_detail'
   end
-    
+
     root to: "customers/homes#top"
-    
+
   scope module: :customers do
     get '/', to: 'homes#top'
     get '/about', to: 'homes#about'

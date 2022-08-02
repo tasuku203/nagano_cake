@@ -9,7 +9,7 @@ class Customer < ApplicationRecord
   has_many :orders, dependent: :destroy
 
   def full_address
-    "〒" + postal_code + ' ' + address + ' ' + full_name
+    "〒" + postal_code + ' ' + address
   end
 
   def full_name

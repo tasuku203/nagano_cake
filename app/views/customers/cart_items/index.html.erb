@@ -1,39 +1,66 @@
-<h1>ショッピングカート</h1>
-
-<table class="table">
-  <% @cart_item.each do |cart_item|%>
-  <thead>
-    <tr>
-      <th scope="col">商品名</th>
-      <th scope="col">単価(税込み)</th>
-      <th scope="col">数量</th>
-      <th scope="col">小計</th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row"><%= cart_item.item.name %></th><%#商品名%>
-      <td><%= cart_item.item.with_tax_price %></td><%#税込み価格%>
-      <td>
-        <%= form_with model:@cart_item, url:cart_items_path, local: true do |f| %>
-          <%= f.select :amount, options_for_select(*[1..10], {selected: cart_item.amount.to_i}) %>
-        <% end %>
-        <%= link_to "変更", cart_item_path(cart_item.id), method: :patch %>
-      </td>
-      <td><%= cart_item.subtotal %></td><%#小計%>
-      <td><%= link_to "削除", cart_item_path(cart_item.id), method: :delete, "data_confirm" => "本当に削除しますか?"%></td>
-    </tr>
-    <% @total += cart_item.subtotal %>
-  <% end %>
-    <tr>
-      <td><%= link_to "買い物を続ける", items_path %></td>
-      <td></td>
-      <td></td>
-      <td>
-        <%= @total %>
-      </td>
-      <td><%= link_to "情報入力に進む", new_order_path %></td>
-    </tr>
-  </tbody>
-</table>
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <h5>ショッピングカート</h5>
+    </div>
+    <div class="col-md-3">
+      <%= form_with model:@cart_item,url:destroy_all_cart_items_path, method: :delete, local: true do |f| %>
+        <%= f.submit "カートを空にする", class:"btn btn-danger" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <table class="table table-bordered">
+      <thead>
+        <tr class="table-active">
+          <th scope="col">商品名</th>
+          <th scope="col">単価(税込み)</th>
+          <th scope="col">数量</th>
+          <th scope="col">小計</th>
+          <th></th>
+        </tr>
+      </thead>
+      <% @cart_item.each do |cart_item|%>
+      <tbody>
+        <tr>
+          <th scope="row"><%= cart_item.item.name %></th><%#商品名%>
+          <td><%= cart_item.item.with_tax_price %></td><%#税込み価格%>
+          <td>
+            <%= form_with model:cart_item, url:cart_item_path(cart_item.id), local: true do |f| %>
+              <!--f.select プロパティ、（選択肢（配列orハッシュ））,(オプション、今回はselect: cart_item.amount.to_iでcart_itemのもともとの個数を初期値にしている)-->
+              <%= f.select :amount, *[1..100], {selected: cart_item.amount.to_i}%>
+              <%# f.select :amount, options_for_select(*[1..10], {selected: cart_item.amount.to_i}) %>
+              <%= f.submit "変更" %>
+            <% end %>
+          </td>
+          <td><%= cart_item.subtotal %></td><%#小計%>
+          <td><%= link_to "削除", cart_item_path(cart_item.id), method: :delete, "data_confirm" => "本当に削除しますか?"%></td>
+        </tr>
+        <% @total += cart_item.subtotal %>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="row">
+    <div class="col-md-9">
+      <%= link_to "買い物を続ける", root_path, class:"btn btn-primary"%>
+    </div>
+    <div class="col-md-3">
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th class="table-active">合計金額</th>
+            <th><%= @total %></th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <%# if %>
+  <div class="row justify-content-md-center">
+    <!--cartitemモデルレコードが存在する場合リンクをつくる-->
+    <% if CartItem.exists? %>
+     <%= link_to "情報入力に進む", new_order_path, class:"btn btn-success" %>
+    <% end %>
+  </div>
+</div>
